@@ -9,16 +9,15 @@ const Tabs = () => {
 
   return ( <>
     <Navbar 
-     style={{ height:'55px',marginBottom:'20px'}} 
-     variant={'dark'} 
-     bg='dark' 
+     style={{marginBottom:'20px',backgroundColor:'#6ba7cc'}} 
+     variant='dark'
      expand="md">
    <Container>
      <Navbar.Brand 
      id='navBrand'> 
       <img id='navLogo' 
       src={infinity}/>
-      React-Bootstrap
+        FizzBuzz
      </Navbar.Brand>
      <Navbar.Toggle 
      aria-controls="basic-navbar-nav" />

@@ -1,6 +1,7 @@
 import '../prism.css'
 import '../Style.css'
 import Highlight, { defaultProps } from "prism-react-renderer";
+import demo from 'prism-react-renderer/themes/synthwave84'
 import styled from "styled-components";
 
 
@@ -8,7 +9,66 @@ import styled from "styled-components";
 const Code = () => {
   // insert your code here
   const exampleCode = `
-    alert('b')
+  import { useState } from 'react';
+  import '../Style.css'
+  
+  const Application = () => {
+
+    //STEP 1
+    const[fizz,setFizz]=useState(3)
+    const[buzz,setBuzz]=useState(5)
+    const[numbers,setNumbers]=useState([])
+    const [index,setIndex]=useState([])
+  
+
+    //STEP 2
+    const handleChangeFizz=(e)=>{
+      setFizz(e.target.value)
+    }
+    const handleChangeBuzz=(e)=>{
+      setBuzz(e.target.value)
+    }
+
+    //STEP 3
+    const handleClick=()=>{
+     let arrayNumber=[]
+     let arrayIndex=[]
+     for(let i=1;i<=100;i++){
+       let value=((i%fizz==0?'Fizz':'')+(i%buzz==0?'Buzz':'')||i)
+       arrayNumber.push(value)
+     }
+     for(let i=0;i<100;i+=5){
+       arrayIndex.push(i)
+     }
+     setNumbers(arrayNumber)
+     setIndex(arrayIndex)
+    }
+  
+    return ( <>
+      //layout has been ommited for shortening the code.
+      //for source code go to repo please
+
+
+      //STEP 4
+     <tbody>
+              {index.map(i=>{
+                return(
+                  <tr>
+                    <td className={numbers[i]}>{numbers[i]}</td>
+                    <td className={numbers[i+1]}>{numbers[i+1]}</td>
+                    <td className={numbers[i+2]}>{numbers[i+2]}</td>
+                    <td className={numbers[i+3]}>{numbers[i+3]}</td>
+                    <td className={numbers[i+4]}>{numbers[i+4]}</td>
+  
+                  </tr>
+                )
+              })}
+            </tbody>
+    </> );
+  }
+  
+   
+  export default Application;
      `.trim();
 
 const Pre = styled.pre`
@@ -36,12 +96,13 @@ const LineContent = styled.span`
 `;
   return ( <>
    <div className="container py-5 px-5">
-     <h3 className="border-1 border-bottom border-dark pb-3">the code of project</h3>
-     <div className="row d-flex align-items-center row-cols-1 row-cols-sm-2">
+     <h3 className="border-1 border-bottom border-dark pb-3 text-end">the code of fizzbuzz</h3>
+     <div className="row row-cols-1 row-cols-sm-2">
        <div className="col-sm-8">
           
         <Highlight 
         {...defaultProps}  
+        theme={demo}
         code={exampleCode} 
         language="js">
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
@@ -62,7 +123,40 @@ const LineContent = styled.span`
           
        </div>
        <div className="col-sm-4 order-sm-last order-first">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo cumque dolorum alias earum odio ut nesciunt corporis minus magni quasi!
+           <div className="row mt-sm-5">
+             <div className="col mt-sm-5">
+               <h5 className='border-bottom border-2 mt-sm-5'>step 1</h5>
+               <p>using useState hooks to create reusable variables.</p>
+             </div>
+           </div>
+           <div className="row">
+             <div className="col mt-sm-5">
+               <h5 className='border-bottom border-2 mt-sm-5'>step 2</h5>
+               <p>using event handler in order to save the change of user</p>
+             </div>
+           </div>
+           <div className="row">
+             <div className="col mt-sm-5">
+               <h5 className='border-bottom border-2 mt-sm-5'>step 3</h5>
+               <p>using for loop two times to generate 1-100 numbers and ternary operator to change numbers to <span className="Fizz">Fizz</span> , <span className="Buzz">Buzz</span> and <span className="FizzBuzz">FizzBuzz</span>.</p>
+             </div>
+           </div>
+           <div className="row mt-sm-5">
+             <div className="col mt-sm-5">
+              
+             </div>
+           </div>
+           <div className="row mt-sm-5">
+             <div className="col mt-sm-5">
+              
+             </div>
+           </div>
+           <div className="row mt-sm-5">
+             <div className="col mt-sm-5">
+               <h5 className='border-bottom border-2 mt-sm-5'>step 4</h5>
+               <p>displaying numbers in the UI with the help of map method.</p>
+             </div>
+           </div>
        </div>
      </div>
    </div>
